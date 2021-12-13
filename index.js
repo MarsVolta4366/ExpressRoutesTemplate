@@ -1,4 +1,5 @@
 const express = require("express") 
+const methodOverride = require("method-override")
 const app = express()
 
 app.use(express.static("public"))
@@ -6,7 +7,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 app.use(express.urlencoded({extended: true}))
-app.use(logger)
+// app.use(logger)
+app.use(methodOverride("_method"))
 
 app.get("/", (req, res) => {
     res.render("Index")
@@ -14,9 +16,9 @@ app.get("/", (req, res) => {
 
 app.use("/users", require("./controllers/users"))
 
-function logger(req, res, next) {
-    console.log(req.originalUrl)
-    next()
-}
+// function logger(req, res, next) {
+//     console.log(req.originalUrl)
+//     next()
+// }
 
 app.listen(3000)

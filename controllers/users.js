@@ -8,6 +8,10 @@ router.get("/New", (req, res) => {
     res.render("users/New")
 })
 
+router.get("/Delete", (req, res) => {
+    res.render("users/Delete")
+})
+
 router.post("/", (req, res) => {
     // res.send("Create user page")
     console.log(req.body.firstName)
